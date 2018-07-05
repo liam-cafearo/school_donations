@@ -41,7 +41,7 @@ function makeGraphs(error, donorsUSProjects) {
     var numProjectsByResourceType = resourceTypeDim.group();
     var numProjectsByPovertyLevel = povertyLevelDim.group();
     var numProjectsByFundingStatus = fundingStatus.group();
-    var totalDonationByState = stateDim.group().reduceSum(function (d) {
+    var totalDonationsByState = stateDim.group().reduceSum(function (d) {
         return d["total_donations"];
     });
     var stateGroup = stateDim.group();
@@ -62,7 +62,7 @@ function makeGraphs(error, donorsUSProjects) {
     var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
     var numberProjectsND = dc.numberDisplay("#number-projects-nd");
     var totalDonationsND = dc.numberDisplay("#total-donations-nd");
-    var fundingStatusChart = dc.pieChart("funding-chart");
+    var fundingStatusChart = dc.pieChart("#funding-chart");
     var selectField = dc.selectMenu('#menu-select');
 
     selectField
@@ -116,7 +116,7 @@ function makeGraphs(error, donorsUSProjects) {
         .width(300)
         .height(250)
         .dimension(povertyLevelDim)
-        .group(numProjectsByResourceType)
+        .group(numProjectsByPovertyLevel)
         .xAxis().ticks(4);
 
     fundingStatusChart
@@ -126,7 +126,7 @@ function makeGraphs(error, donorsUSProjects) {
         .innerRadius(40)
         .transitionDuration(1500)
         .dimension(fundingStatus)
-        .group(numProjectsByResourceType)
+        .group(numProjectsByFundingStatus)
 
 
     dc.renderAll();
