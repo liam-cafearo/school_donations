@@ -1,5 +1,5 @@
 queue()
-    .defer(d3.json, "donorUS/projects")
+    .defer(d3.json, "donorsUS/projects")
     .await(makeGraphs);
 
 function makeGraphs(error, donorsUSProjects) {
@@ -53,7 +53,7 @@ function makeGraphs(error, donorsUSProjects) {
     });
 
     // Define values (to be used in charts)
-    var MinDate = dateDim.bottom(1)[0]["date_posted"];
+    var minDate = dateDim.bottom(1)[0]["date_posted"];
     var maxDate = dateDim.top(1)[0]["date_posted"];
 
     // Charts
@@ -123,7 +123,7 @@ function makeGraphs(error, donorsUSProjects) {
         .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5", "#F5821F"])
         .height(220)
         .radius(90)
-        .innerRadiuus(40)
+        .innerRadius(40)
         .transitionDuration(1500)
         .dimension(fundingStatus)
         .group(numProjectsByResourceType)
